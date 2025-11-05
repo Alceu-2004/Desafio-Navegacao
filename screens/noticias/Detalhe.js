@@ -1,6 +1,7 @@
 import React, { useLayoutEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Detalhe({ route }) {
   const navigation = useNavigation();
@@ -11,21 +12,75 @@ export default function Detalhe({ route }) {
     navigation.setOptions({ title: titulo });
   }, [navigation, titulo]);
 
-  return (
-    <ScrollView style={styles.container}>
-      {/* Categoria acima do título */}
-      <Text style={styles.tipo}>{tipo}</Text>
+  const irParaTecnologia = () => {
+    navigation.navigate('Tabs', { screen: 'Tecnologia' });
+  };
 
-      <Text style={styles.titulo}>{titulo}</Text>
-      <Text style={styles.conteudo}>{conteudo}</Text>
-    </ScrollView>
+  const irParaEsportes = () => {
+    navigation.navigate('Tabs', { screen: 'Esportes' });
+  };
+
+  return (
+    <View style={styles.page}>
+      <ScrollView style={styles.container}>
+        <Text style={styles.tipo}>{tipo}</Text>
+        <Text style={styles.titulo}>{titulo}</Text>
+        <Text style={styles.conteudo}>{conteudo}</Text>
+      </ScrollView>
+
+      {/* Barra inferior */}
+      <View style={styles.bottomTabs}>
+        <TouchableOpacity
+          style={styles.tabButton}
+          onPress={irParaTecnologia}
+        >
+          <Ionicons
+            name="hardware-chip-outline"
+            size={22}
+            color={tipo === 'Tecnologia' ? '#1976D2' : '#999'}
+            style={styles.icon}
+          />
+          <Text
+            style={[
+              styles.tabText,
+              { color: tipo === 'Tecnologia' ? '#1976D2' : '#999' },
+            ]}
+          >
+            Tecnologia
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.tabButton}
+          onPress={irParaEsportes}
+        >
+          <Ionicons
+            name="football-outline"
+            size={22}
+            color={tipo === 'Esportes' ? '#1976D2' : '#999'}
+            style={styles.icon}
+          />
+          <Text
+            style={[
+              styles.tabText,
+              { color: tipo === 'Esportes' ? '#1976D2' : '#999' },
+            ]}
+          >
+            Esportes
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  page: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  container: {
+    flex: 1,
     padding: 16,
   },
   tipo: {
@@ -44,5 +99,27 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
     lineHeight: 22,
+  },
+  bottomTabs: {
+    flexDirection: 'row',
+    borderTopWidth: 1,
+    borderColor: '#ddd',
+    backgroundColor: '#fff',
+    height: 70,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  tabButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+  },
+  icon: {
+    marginRight: 6,
+  },
+  tabText: {
+    fontSize: 13,
+    fontWeight: '600',
   },
 });

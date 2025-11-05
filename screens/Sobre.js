@@ -9,7 +9,13 @@ export default function Sobre({ navigation }) {
         style={styles.imagem}
       />
       <Text style={styles.texto}>
-        Este aplicativo de notícias foi desenvolvido para praticar diferentes tipos de navegação com React Navigation e Expo.
+        Este aplicativo foi desenvolvido com o objetivo de apresentar notícias de forma simples e organizada, divididas em categorias como Tecnologia e Esportes.
+      </Text>
+      <Text style={styles.texto}>
+        O projeto utiliza React Native com Expo, integrando navegação por abas, drawer e rotas empilhadas, proporcionando uma experiência fluida e intuitiva ao usuário.
+      </Text>
+      <Text style={styles.texto}>
+        A ideia é demonstrar na prática o uso de componentização, navegação entre telas e estilização no desenvolvimento mobile.
       </Text>
       <Button title="Voltar" onPress={() => navigation.goBack()} />
     </View>
