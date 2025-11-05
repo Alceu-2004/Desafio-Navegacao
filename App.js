@@ -5,9 +5,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 
-import Tecnologia from './screens/Noticias/Tecnologia';
-import Esportes from './screens/Noticias/Esportes';
-import Detalhe from './screens/Noticias/Detalhe';
+import Tecnologia from './screens/noticias/Tecnologia';
+import Esportes from './screens/noticias/Esportes';
+import Detalhe from './screens/noticias/Detalhe';
 import Sobre from './screens/Sobre';
 
 const Drawer = createDrawerNavigator();
